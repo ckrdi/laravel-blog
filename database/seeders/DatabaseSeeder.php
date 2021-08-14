@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use Database\Seeders\UsersTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,12 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
-            'name' => 'Obiwan Kenobi',
-            'username' => 'generalkenobi',
-            'email' => 'generalkenobi@gmail.com',
-            'password' => bcrypt('secret'),
-        ]);
+        $this->call(UsersTableSeeder::class);
         
         Post::factory(30)->create();
     }

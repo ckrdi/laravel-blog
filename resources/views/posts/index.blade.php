@@ -1,12 +1,12 @@
 <x-guest-layout>
     <div class="flex-1 py-6">
-        @if ($posts)
+        @if (count($posts))
             @foreach ($posts as $post)
                 <div class="max-w-4xl mx-auto my-2 sm:px-6 lg:px-8">
                     <div class="bg-white shadow sm:rounded-lg">
                         <div class="p-4 border-gray-200 flex items-center">
                             <div class="flex-shrink-0 flex items-center justify-between">
-                                <img src="{{ $post->thumbnail }}" alt="{{ $post->thumbnail }}" width="96" height="72">
+                                <img class="rounded-lg" src="{{ $post->thumbnail }}" alt="{{ $post->thumbnail }}" width="96" height="72">
                             </div>
                             <div>
                                 <div class="ml-4">
@@ -65,10 +65,11 @@
             @endforeach
             <div class="max-w-4xl mx-auto my-2 sm:px-6 lg:px-8">
                 {{ $posts->links() }}
-            </div>   
+            </div> 
+        @else
+            <div class="flex items-center justify-center">
+                <div class="text-gray-600">There is no post.</div>
+            </div>
         @endif
-        <div class="flex items-center justify-center">
-            <div class="text-gray-600">There is no post.</div>
-        </div>
     </div>
 </x-guest-layout>
