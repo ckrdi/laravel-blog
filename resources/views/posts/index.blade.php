@@ -11,7 +11,7 @@
                             <div>
                                 <div class="ml-4">
                                     <div class="text-lg leading-7 font-semibold">
-                                        <a href="#" class="text-gray-900">
+                                        <a href="{{ route('show', [ 'post' => $post ]) }}" class="text-gray-900">
                                             {{ $post->title }}
                                         </a>
                                     </div>

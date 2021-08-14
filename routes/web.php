@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/about', 'about');
+Route::view('/about', 'about')->name('about');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -22,4 +22,6 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [PostController::class, 'index']);
+Route::get('/', [PostController::class, 'index'])->name('index');
+
+Route::get('/{post:slug}', [PostController::class, 'show'])->name('show');

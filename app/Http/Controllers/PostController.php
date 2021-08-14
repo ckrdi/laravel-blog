@@ -13,4 +13,11 @@ class PostController extends Controller
             'posts' => Post::with('user')->latest('id')->simplePaginate(5)
         ]);
     }
+
+    public function show(Post $post)
+    {
+        return view('posts.show', [
+            'post' => $post
+        ]);
+    }
 }
