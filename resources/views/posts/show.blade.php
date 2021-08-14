@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="ml-1 text-gray-600 text-sm hover:underline">
-                            Category
+                            {{ $post->category->name }}
                         </div>
                         
                         <div class="ml-3 text-gray-600">

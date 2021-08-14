@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,17 +13,20 @@ class IndexPostsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_index_posts_is_rendered()
+    public function test_index_posts_is_rendered_correctly_when_there_is_no_post()
     {
-        $this->get('/')->assertStatus(200);
-        $this->get('/')->assertSee('There is no post.', false);
+        $this->get(route('index'))->assertStatus(200);
+        $this->get(route('index'))->assertSee('There is no post.', false);
     }
 
     public function test_index_posts_receives_data_correctly()
     {
         User::factory()->create();
+        Category::factory(3)->create();
         $post = Post::factory()->create();
 
-        $this->get('/')->assertSee($post->title);
+        $this->get(route('index'))
+            ->assertSee($post->title, false)
+            ->assertSee($post->category->name, false);
     }
 }
