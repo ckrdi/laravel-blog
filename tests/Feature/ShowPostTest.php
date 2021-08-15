@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Category;
 use Tests\TestCase;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,10 +19,13 @@ class ShowPostTest extends TestCase
         User::factory()->create();
         Category::factory(3)->create();
         $post = Post::factory()->create();
+        $tag = Tag::factory()->create();
+        $tag->posts()->attach($post);
         
         $this->get(route('show', [ 'post' => $post ]))
             ->assertStatus(200)
             ->assertSee($post->title, false)
-            ->assertSee($post->category->name, false);
+            ->assertSee($post->category->name, false)
+            ->assertSee($post->tags[0]->name, false);
     }
 }

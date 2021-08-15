@@ -37,12 +37,17 @@
                             </svg>
                         </div>
 
-                        <div class="ml-1 text-gray-600 text-sm hover:underline">
-                            tags1
-                        </div>
-                        <div class="ml-1 text-gray-600 text-sm hover:underline">
-                            tags2
-                        </div>
+                        @if (count($post->tags))
+                            @foreach ($post->tags as $tag)
+                                <div class="ml-1 text-gray-600 text-sm hover:underline">
+                                    {{ $tag->name }}
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="ml-1 text-gray-600 text-sm hover:underline">
+                                No tag
+                            </div>
+                        @endif
 
                         <div class="ml-3 text-gray-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

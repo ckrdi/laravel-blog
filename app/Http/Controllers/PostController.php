@@ -10,7 +10,7 @@ class PostController extends Controller
     public function index()
     {
         return view('posts.index', [
-            'posts' => Post::with('user', 'category')->latest('id')->simplePaginate(10)
+            'posts' => Post::with('user', 'category', 'tags')->latest('id')->simplePaginate(10)
         ]);
     }
 

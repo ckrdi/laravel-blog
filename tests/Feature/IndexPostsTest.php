@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -24,9 +25,12 @@ class IndexPostsTest extends TestCase
         User::factory()->create();
         Category::factory(3)->create();
         $post = Post::factory()->create();
+        $tag = Tag::factory()->create();
+        $post->tags()->attach($tag);
 
         $this->get(route('index'))
             ->assertSee($post->title, false)
-            ->assertSee($post->category->name, false);
+            ->assertSee($post->category->name, false)
+            ->assertSee($post->tags[0]->name, false);
     }
 }
