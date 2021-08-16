@@ -32,7 +32,7 @@
                             {{ __('About') }}
                         </x-dropdown-link>
                         @auth
-                            <x-dropdown-link href="{{ route('dashboard.index') }}">
+                            <x-dropdown-link href="{{ route('dashboard') }}">
                                 {{ __('Dashboard') }}
                             </x-dropdown-link>
                         @else
@@ -90,7 +90,7 @@
         </div>
         @auth
             <div class="py-1">
-                <x-responsive-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard.index')">
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
             </div>

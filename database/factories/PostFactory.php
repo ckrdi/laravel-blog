@@ -26,7 +26,7 @@ class PostFactory extends Factory
             'category_id' => $this->faker->numberBetween(1, 3),
             'title' => $this->faker->words(3, true),
             'body' => $this->faker->paragraphs(20, true),
-            'thumbnail' => 'https://dummyimage.com/600x400/000/fff'
+            'thumbnail' => ''
         ];
     }
 }

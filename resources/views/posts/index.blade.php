@@ -6,7 +6,12 @@
                     <div class="bg-white shadow sm:rounded-lg">
                         <div class="p-4 border-gray-200 flex items-center">
                             <div class="flex-shrink-0 flex items-center justify-between">
-                                <img class="rounded-lg" src="{{ $post->thumbnail }}" alt="{{ $post->thumbnail }}" width="96" height="72">
+                                <img class="rounded-lg" 
+                                    src="{{ $post->thumbnail ? asset('storage/'.$post->thumbnail) : 'https://dummyimage.com/600x400/000/fff' }}" 
+                                    alt="{{ $post->thumbnail ? $post->thumbnail : 'dummyimage' }}" 
+                                    width="96"
+                                    height="72"
+                                >
                             </div>
                             <div>
                                 <div class="ml-4">

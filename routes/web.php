@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoryDashboardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostDashboardController;
+use App\Http\Controllers\TagDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/about', 'about')->name('about');
 
-Route::resource('/dashboard', DashboardController::class)->middleware(['auth', 'verified']);
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/post', PostDashboardController::class);
+    Route::resource('/category', CategoryDashboardController::class);
+    Route::resource('/tag', TagDashboardController::class);
+});
 
 require __DIR__.'/auth.php';
 
