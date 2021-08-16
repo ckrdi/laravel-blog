@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/about', 'about')->name('about');
 
-Route::resource('/dashboard', DashboardController::class)->middleware(['auth']);
+Route::resource('/dashboard', DashboardController::class)->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
 
