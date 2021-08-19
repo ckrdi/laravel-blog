@@ -81,7 +81,11 @@ class PostDashboardController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('post.edit', [
+            'post' => Post::where('id', $id)->first(),
+            'categories' => Category::all(),
+            'tags' => Tag::all()
+        ]);
     }
 
     /**

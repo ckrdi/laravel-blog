@@ -21,7 +21,9 @@
                     
                     <div class="mx-4">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            {{ $post->body }}
+                            <p>
+                                {!! nl2br(e($post->body)) !!}
+                            </p>
                         </div>
                     </div>
 

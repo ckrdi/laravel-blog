@@ -82,7 +82,7 @@
                                         </div>
                                     </div>
                                     <div class="p-2 flex items-center">
-                                        <a href="{{ route('index') }}" class="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium flex items-center">
+                                        <a href="{{ route('post.edit', [ 'post' => $post->id ] ) }}" class="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium flex items-center">
                                             <span class=" text-gray-700">Edit</span>
                                         </a>
                                         <form method="POST" action="{{ route('logout') }}">
