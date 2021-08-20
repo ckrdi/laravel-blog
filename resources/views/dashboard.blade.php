@@ -8,7 +8,7 @@
                 <a href="{{ route('category.create') }}" class="p-2 bg-white border border-indigo-300 rounded-lg">
                     Create a category
                 </a>
-                <a href="{{ route('post.create') }}" class="p-2 bg-white border border-indigo-300 rounded-lg">
+                <a href="{{ route('tag.create') }}" class="p-2 bg-white border border-indigo-300 rounded-lg">
                     Create a tag
                 </a>
             </div>
@@ -186,21 +186,27 @@
                                                 {{ $tag->name }}
                                             </div>
                                         </div>
-                                        <div class="p-2 flex items-center">
-                                            <a href="{{ route('index') }}" class="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium flex items-center">
+                                        <div x-data="{ open: false }" class="relative p-2 flex items-center">
+                                            <a href="{{ route('tag.edit', [ 'tag' => $tag ]) }}" class="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium flex items-center">
                                                 <span class=" text-gray-700">Edit</span>
                                             </a>
-                                            <form method="POST" action="{{ route('logout') }}">
-                                                @csrf
-                        
-                                                <a href="{{ route('logout') }}"
-                                                    class="bg-white border border-gray-300 ml-2 rounded-lg px-4 py-2 text-sm font-medium flex items-center"
-                                                    onclick="event.preventDefault();
-                                                        this.closest('form').submit();"
-                                                >
-                                                    <span class="text-red-500">Delete</span>
-                                                </a>
-                                            </form>
+                                            <button @click=" open = ! open " class="bg-white border border-gray-300 ml-2 rounded-lg px-4 py-2 text-sm font-medium flex items-center">
+                                                <span class="text-red-500">Delete</span>
+                                            </button>
+                                            <div x-show="open" class="absolute bottom-12 right-2 bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium flex flex-col items-start">
+                                                <span class="text-gray-700 mb-2">Are you sure?</span>
+                                                <form method="POST" action="{{ route('tag.destroy', [ 'tag' => $tag ]) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                            
+                                                    <button class="bg-white border border-gray-300 rounded-lg px-6 py-2 text-sm font-medium flex items-center"
+                                                        onclick="event.preventDefault();
+                                                            this.closest('form').submit();"
+                                                    >
+                                                        <span class="text-red-500">Delete</span>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

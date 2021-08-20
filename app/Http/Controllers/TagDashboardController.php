@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TagDashboardController extends Controller
@@ -23,7 +24,7 @@ class TagDashboardController extends Controller
      */
     public function create()
     {
-        //
+        return view('tag.create');
     }
 
     /**
@@ -34,7 +35,15 @@ class TagDashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'unique:tags,name']
+        ]);
+
+        Tag::create([
+            'name' => $request->name
+        ]);
+
+        return redirect(route('dashboard'));
     }
 
     /**
@@ -51,33 +60,43 @@ class TagDashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Models\Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
-        //
+        return view('tag.edit', [
+            'tag' => $tag
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Models\Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'unique:tags,name']
+        ]);
+
+        $tag->update([
+            'name' => $request->name
+        ]);
+
+        return redirect(route('dashboard'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  App\Models\Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
         //
     }
