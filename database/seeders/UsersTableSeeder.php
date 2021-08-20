@@ -19,7 +19,8 @@ class UsersTableSeeder extends Seeder
                 ['email' => config('admin.admin_email')], [
                     'name' => config('admin.admin_name'),
                     'username' => config('admin.admin_username'),
-                    'password' => bcrypt(config('admin.admin_password'))
+                    'password' => bcrypt(config('admin.admin_password')),
+                    'email_verified_at' => now()
                 ]
             );
         }

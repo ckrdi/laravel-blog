@@ -35,6 +35,16 @@ class CategoryDashboardController extends Controller
      */
     public function store(Request $request)
     {
+        // Restore a soft deleted category
+        $category = Category::withTrashed()->where('name', $request->name)->first();
+
+        if (isset($category)) {
+            $category->restore();
+
+            return redirect(route('dashboard'));    
+        }
+
+        // Create a new category
         $request->validate([
             'name' => ['required', 'unique:categories,name']
         ]);
@@ -98,6 +108,16 @@ class CategoryDashboardController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        // Check if the category has post(s)
+        if (count($category->posts) == 0) {
+            $category->forceDelete();
+
+            return redirect(route('dashboard'));    
+        }
+
+        // If category has post(s), use softDelete
+        $category->delete();
+
+        return redirect(route('dashboard'));
     }
 }
