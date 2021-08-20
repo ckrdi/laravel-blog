@@ -107,7 +107,7 @@
                             </div>
                         @endforeach
                         <div class="my-2">
-                            {{ $posts->links() }}
+                            {{ $posts->appends([ 'categories' => $categories->currentPage(), 'tags' => $tags->currentPage() ])->links() }}
                         </div> 
                     @else
                         <div class="flex items-center justify-center">
@@ -160,7 +160,7 @@
                                 </div>
                             @endforeach
                             <div class="mt-2">
-                                {{ $categories->links() }}
+                                {{ $categories->appends([ 'posts' => $posts->currentPage(), 'tags' => $tags->currentPage() ])->links() }}
                             </div>
                         @else
                             <div class="bg-white p-2 mt-2 shadow sm:rounded-lg">
@@ -212,7 +212,7 @@
                                 </div>
                             @endforeach
                             <div class="mt-2">
-                                {{ $tags->links() }}
+                                {{ $tags->appends([ 'posts' => $posts->currentPage(), 'categories' => $categories->currentPage() ])->links() }}
                             </div>
                         @else
                             <div class="bg-white p-2 mt-2 shadow sm:rounded-lg">

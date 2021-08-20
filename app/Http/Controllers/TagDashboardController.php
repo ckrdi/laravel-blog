@@ -98,6 +98,10 @@ class TagDashboardController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->posts()->detach();
+
+        $tag->delete();
+
+        return redirect(route('dashboard'));
     }
 }

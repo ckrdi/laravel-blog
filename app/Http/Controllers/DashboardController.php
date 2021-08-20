@@ -10,9 +10,9 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard', [
-            'posts' => Post::with('user', 'category', 'tags')->latest('id')->simplePaginate(10),
-            'categories' => Category::latest('id')->simplePaginate(5),
-            'tags' => Tag::latest('id')->simplePaginate(5)
+            'posts' => Post::with('user', 'category', 'tags')->latest('id')->simplePaginate(10, ['*'], 'posts'),
+            'categories' => Category::latest('id')->simplePaginate(5, ['*'], 'categories'),
+            'tags' => Tag::latest('id')->simplePaginate(5, ['*'], 'tags')
         ]);
     }
 }
