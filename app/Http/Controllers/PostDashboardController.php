@@ -128,11 +128,19 @@ class PostDashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        if (Storage::exists($post->thumbnail)) {
+            Storage::delete($post->thumbnail);
+        }
+
+        $post->tags()->detach();
+
+        $post->delete();
+
+        return redirect(route('dashboard'));
     }
 }
