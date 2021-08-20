@@ -4,8 +4,9 @@
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-            <form method="POST" action="#" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('post.update', [ 'post' => $post ]) }}" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
     
                 <!-- Title -->
                 <div>
@@ -67,15 +68,20 @@
                         height="40"
                     >
     
-                    <x-input id="thumbnail" class="block mt-1 w-full" type="file" name="thumbnail" required />
+                    <x-input id="thumbnail" class="block mt-1 w-full" type="file" name="thumbnail" />
                 </div>
     
                 <div class="flex items-center justify-end mt-4">
                     <x-button class="ml-3">
-                        {{ __('Submit') }}
+                        {{ __('Update') }}
                     </x-button>
                 </div>
             </form>
+            <a href="{{ route('dashboard') }}" class="flex items-center justify-end mt-4">
+                <x-button class="ml-3">
+                    {{ __('Go Back') }}
+                </x-button>
+            </a>
         </div>
     </div>
 </x-app-layout>

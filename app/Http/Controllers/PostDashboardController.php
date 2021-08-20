@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostDashboardController extends Controller
 {
@@ -92,12 +93,36 @@ class PostDashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'category' => 'required'
+        ]);
+
+        if ($request->hasFile('thumbnail')) {
+            Storage::delete($post->thumbnail);
+
+            $newPath =  $request->file('thumbnail')->store('thumbnails');
+
+            $post->update([
+                'thumbnail' => $newPath
+            ]);
+        }
+
+        $post->update([
+            'category_id' => $request->category,
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+
+        $post->tags()->sync($request->input('tag'));
+
+        return redirect(route('dashboard'));
     }
 
     /**
