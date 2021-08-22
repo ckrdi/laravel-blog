@@ -216,7 +216,7 @@
                             </div>
                         @else
                             <div class="bg-white p-2 mt-2 shadow sm:rounded-lg">
-                                No Categories
+                                No Tags
                             </div>
                         @endif
                     </div>

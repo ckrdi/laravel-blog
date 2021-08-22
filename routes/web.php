@@ -22,9 +22,9 @@ Route::view('/about', 'about')->name('about');
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('/post', PostDashboardController::class);
-    Route::resource('/category', CategoryDashboardController::class);
-    Route::resource('/tag', TagDashboardController::class);
+    Route::resource('/post', PostDashboardController::class)->except([ 'index', 'show' ]);
+    Route::resource('/category', CategoryDashboardController::class)->except([ 'index', 'show' ]);
+    Route::resource('/tag', TagDashboardController::class)->except([ 'index', 'show' ]);
 });
 
 require __DIR__.'/auth.php';
