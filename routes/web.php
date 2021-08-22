@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\CategoryDashboardController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\PostDashboardController;
-use App\Http\Controllers\TagDashboardController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TagDashboardController;
+use App\Http\Controllers\PostDashboardController;
+use App\Http\Controllers\CategoryDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+    
+    return redirect(route('index'));
+});
 
 Route::view('/about', 'about')->name('about');
 
