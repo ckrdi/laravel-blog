@@ -15,6 +15,9 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <!-- Tiny MCE -->
+        <script src="https://cdn.tiny.cloud/1/{{ config('tinymce.api_key') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -25,5 +28,11 @@
                 {{ $slot }}
             </main>
         </div>
+        <script>
+            tinymce.init({
+              selector: 'textarea',
+              inline: true
+           });
+        </script>
     </body>
 </html>

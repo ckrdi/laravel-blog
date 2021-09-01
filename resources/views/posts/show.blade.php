@@ -10,20 +10,18 @@
                         height="400"
                     >
                 </div>
-                <div>
-                    <div class="mt-4 flex items-center justify-center">
-                        <div class="text-xl leading-7 font-bold">
-                            <span class="text-gray-900">
+                <div class="p-5 sm:p-10">
+                    <div class="my-10 mx-4">
+                        <div class="text-4xl sm:text-5xl tracking-tight leading-10 font-bold">
+                            <h1>
                                 {{ $post->title }}
-                            </span>
+                            </h1>
                         </div>
                     </div>
                     
                     <div class="mx-4">
-                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            <p>
-                                {!! nl2br(e($post->body)) !!}
-                            </p>
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 leading-7 sm:leading-8 text-lg sm:text-xl">
+                            {!! $post->body !!}
                         </div>
                     </div>
 
