@@ -8,9 +8,9 @@
                         <div class="ml-4 text-lg leading-7 font-semibold"><span class="text-gray-900 dark:text-white">Welcome to my website</span></div>
                     </div>
 
-                    <div class="ml-12">
-                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            My name is Agung, I'm a self-taught web developer from Indonesia. I'm currently learning Laravel and this is my personal blog.
+                    <div class="mx-12 mt-2">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm leading-loose">
+                            My name is Agung, I'm a self-taught software developer from Indonesia. I'm currently working as a software developer in a tech company that uses .NET and React as its main tech stacks. This blog is built using Laravel, so I know a little bit of C#, Javascript, and PHP.
                         </div>
                     </div>
                 </div>

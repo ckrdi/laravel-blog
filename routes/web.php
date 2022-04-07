@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TagDashboardController;
+use App\Http\Controllers\TemantourController;
 use App\Http\Controllers\PostDashboardController;
 use App\Http\Controllers\CategoryDashboardController;
 
@@ -21,11 +22,13 @@ use App\Http\Controllers\CategoryDashboardController;
 
 Route::get('/foo', function () {
     Artisan::call('storage:link');
-    
+
     return redirect(route('index'));
 });
 
 Route::view('/about', 'about')->name('about');
+
+Route::get('/temantour', [TemantourController::class, 'index'])->name('temantour');
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
