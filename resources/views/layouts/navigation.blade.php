@@ -32,7 +32,7 @@
                             {{ __('About') }}
                         </x-dropdown-link>
                         <x-dropdown-link href="{{ route('temantour') }}">
-                            {{ __('Teman Tour') }}
+                            {{ __('Teman Tour and Travel') }}
                         </x-dropdown-link>
                         @auth
                             <x-dropdown-link href="{{ route('dashboard') }}">
